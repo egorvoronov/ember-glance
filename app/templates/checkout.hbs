@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <!-- Our container -->
+    <div class="row">
+        <div class="well checkout-container">
+
+            <!-- logo and my order link -->
+            <div class='row checkout__header'>
+                <img class="logo pull-left" src="assets/egl.png" alt="egl">
+                <h3>Checkout</h3>
+            </div>
+
+            <form>
+                <!-- email -->
+                <div class="form-group checkout__item">
+                    <h5><b>WHERE SHOULD WE SEND THE RECEIPT</b></h5>
+                    {{input type="email" value=model.newOrder.email placeholder="EMAIL" classNames='form-control checkout__item__input'}}
+                </div>
+
+                <!-- payment method -->
+                <div class="form-group checkout__item">
+                    <h5><b>HOW WOULD YOU LIKE TO PAY?</b></h5>
+                    {{view "select"
+                    content=model.paymentMethods
+                    optionValuePath='content.id'
+                    optionLabelPath='content.creditCardNumber'
+                    classNames='form-control checkout__item__input'
+                    selectionBinding='model.newOrder.paymentMethod_id'
+                    prompt='-- SELECT PAYMENT METHOD --'
+                    }}
+                </div>
+
+                <!-- shipping -->
+                <div class="checkout__item">
+                    <h5><b>WHERE SHOULD WE SEND IT?</b></h5>
+                    <div class="form-group">
+                        <h6>SHIPPING ADDRESS</h6>
+                        {{view "select"
+                        content=model.shippingAddresses
+                        optionValuePath='content.id'
+                        optionLabelPath='content.fullAddress'
+                        classNames='form-control checkout__item__input'
+                        selectionBinding='model.newOrder.shippingAddress_id'
+                        prompt='-- SELECT SHIPPING ADDRESS --'
+                        }}
+                    </div>
+
+                    <!-- shipping speed -->
+                    <div class="form-group">
+                        <h6>SHIPPING SPEED</h6>
+                        {{view "select"
+                        content=model.shippingSpeeds
+                        optionValuePath='content.id'
+                        optionLabelPath='content.displayedName'
+                        classNames='form-control checkout__item__input'
+                        selectionBinding='model.newOrder.shippingSpeed_id'
+                        prompt='-- SELECT SHIPPING SPEED --'
+                        }}
+                    </div>
+                </div>
+
+                <button {{action "placeOrder"}} class="btn btn-lg btn-block btn-order">PLACE ORDER</button>
+            </form>
+
+        </div>
+    </div>
+</div>

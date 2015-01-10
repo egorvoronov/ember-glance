@@ -6,6 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('checkout');
+  this.route('orders');
+  this.route('confirm');
 });
 
 export default Router;

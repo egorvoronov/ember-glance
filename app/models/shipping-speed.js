@@ -1,22 +1,20 @@
 import DS from "ember-data";
 
-var ShippingAddress = DS.Model.extend({
-  country: DS.attr('string'),
-  state: DS.attr('string'),
-  city: DS.attr('string'),
-  address: DS.attr('string'),
+var ShippingSpeed = DS.Model.extend({
+  name: DS.attr('string'),
+  deliverySpeed: DS.attr('string'),
+  price: DS.attr('number'),
 
-  fullAddress: function(){
-    var state = this.get('state') ? this.get('state') + ', ' : '';
-
-    return this.get('country') + ': ' + state + this.get('city') + ', ' + this.get('address');
+  displayedName: function() {
+    return this.get('name') + ' (' + this.get('deliverySpeed') + ')';
   }.property()
 });
 
-ShippingAddress.reopenClass({
+ShippingSpeed.reopenClass({
   FIXTURES: [
-    {id: 1, country: 'RU', state: null, city: 'Saint Petersburg', address: 'Nevskiy, 1'},
-    {id: 2, country: 'US', state: 'Nebraska', city: 'Omaha', address: 'Linkoln street, 15'}
+    {id: 1, name: 'Fast', deliverySpeed: '1-2 days', price: 32},
+    {id: 2, name: 'Medium', deliverySpeed: '3-7 days', price: 15},
+    {id: 3, name: 'Slow', deliverySpeed: '1 month', price: 7}
   ]
 });
-export default ShippingAddress;
+export default ShippingSpeed;

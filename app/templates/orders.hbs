@@ -1,1 +1,8 @@
-Your order has been confirmed
+<h1>Last customers</h1>
+{{#each tagName='ul' class='list-group'}}
+  <li class="list-group-item">{{email}}</li>
+{{else}}
+  No one yet! =)
+{{/each}}
+
+{{#link-to 'checkout' class='btn btn-info'}}Go to checkout{{/link-to}}

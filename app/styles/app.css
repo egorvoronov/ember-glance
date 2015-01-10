@@ -1,3 +1,29 @@
-html, body {
-  margin: 20px;
+.checkout-container {
+  width: 400px;
+}
+
+.checkout__header {
+  border-bottom: 1px solid black;
+}
+
+.logo {
+  width: 60px;
+}
+
+.checkout__item {
+  margin: 40px 0;
+}
+
+.checkout__item__input {
+  height: 50px;
+  border-radius: 0;
+}
+
+.btn-order {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+  border-radius: 0;
+  font-weight: bold;
+  height: 60px;
 }

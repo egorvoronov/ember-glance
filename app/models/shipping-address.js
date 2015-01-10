@@ -1,19 +1,22 @@
 import DS from "ember-data";
 
-var PaymentMethod = DS.Model.extend({
-  creditCardNumber: DS.attr('number'),
-  month: DS.attr('number'),
-  year: DS.attr('number'),
-  monthAndYear: function() {
-    return this.month + '/' + this.year;
-  }.property(),
-  cvv: DS.attr('string')
+var ShippingAddress = DS.Model.extend({
+  country: DS.attr('string'),
+  state: DS.attr('string'),
+  city: DS.attr('string'),
+  address: DS.attr('string'),
+
+  fullAddress: function(){
+    var state = this.get('state') ? this.get('state') + ', ' : '';
+
+    return this.get('country') + ': ' + state + this.get('city') + ', ' + this.get('address');
+  }.property()
 });
 
-PaymentMethod.reopenClass({
+ShippingAddress.reopenClass({
   FIXTURES: [
-    {id: 1, creditCardNumber: '38751039485712039', month: 3, year: 2017, cvv: '358'},
-    {id: 2, creditCardNumber: '23436436234754345', month: 7, year: 2015, cvv: '345'}
+    {id: 1, country: 'RU', state: null, city: 'Saint Petersburg', address: 'Nevskiy, 1'},
+    {id: 2, country: 'US', state: 'Nebraska', city: 'Omaha', address: 'Linkoln street, 15'}
   ]
 });
-export default PaymentMethod;
+export default ShippingAddress;
